@@ -12,15 +12,15 @@ barplot.errorbars<-function(formula, data, eb=sd, lwd=1,
                            cex.axis=par("cex.axis"), cex.names=par("cex.axis"),
                            code=3, updown=1) {
   par(lwd=lwd)
-  nlev<-nlevels(factor(df[[as.character(formula[3])]]))
+  nlev<-nlevels(factor(data[[as.character(formula[3])]]))
   means <- c()
   stds <- c()
   for(i in 1:nlev) {
-    isgoodrow<-df[,as.character(formula[3])]==levels(factor(df[[as.character(formula[3])]]))[i]
-    means<-c(means, mean(df[isgoodrow,as.character(formula[2])]))
-    stds<-c(stds, eb(df[isgoodrow,as.character(formula[2])]))
+    isgoodrow<-data[,as.character(formula[3])]==levels(factor(data[[as.character(formula[3])]]))[i]
+    means<-c(means, mean(data[isgoodrow,as.character(formula[2])]))
+    stds<-c(stds, eb(data[isgoodrow,as.character(formula[2])]))
   }
-  barplot(means, names.arg=levels(factor(df[[as.character(formula[3])]])),
+  barplot(means, names.arg=levels(factor(data[[as.character(formula[3])]])),
           main=main, sub=sub, ylab=ylab, col=col, lwd=lwd,
           ylim=ylim, axes=axes, axisnames=axisnames,
           cex.axis=cex.axis, cex.names=cex.names)
@@ -50,7 +50,7 @@ barplot.asterisk2<-function(formula, data, set1=c(1), set2=c(2), method, eb=sd,
                            cex.axis=par("cex.axis"), cex.names=par("cex.axis"),
                            code=3, updown=1) {
   par(lwd=lwd)
-  nlev<-nlevels(factor(df[[as.character(formula[3])]]))
+  nlev<-nlevels(factor(data[[as.character(formula[3])]]))
   if(length(set1)!=length(set2)) {
     stop("Sequences 'set1' and 'set2' must have same lengths")
   }
@@ -74,11 +74,11 @@ barplot.asterisk2<-function(formula, data, set1=c(1), set2=c(2), method, eb=sd,
   means <- c()
   stds <- c()
   for(i in 1:nlev) {
-    isgoodrow<-df[,as.character(formula[3])]==levels(factor(df[[as.character(formula[3])]]))[i]
-    means<-c(means, mean(df[isgoodrow,as.character(formula[2])]))
-    stds<-c(stds, eb(df[isgoodrow,as.character(formula[2])]))
+    isgoodrow<-data[,as.character(formula[3])]==levels(factor(data[[as.character(formula[3])]]))[i]
+    means<-c(means, mean(data[isgoodrow,as.character(formula[2])]))
+    stds<-c(stds, eb(data[isgoodrow,as.character(formula[2])]))
   }
-  barplot(means, names.arg=levels(factor(df[[as.character(formula[3])]])),
+  barplot(means, names.arg=levels(factor(data[[as.character(formula[3])]])),
           main=main, sub=sub, ylab=ylab, col=col,
           ylim=ylim, axes=axes, axisnames=axisnames,
           cex.axis=cex.axis, cex.names=cex.names, lwd=lwd)
